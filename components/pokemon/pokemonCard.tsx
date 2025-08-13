@@ -1,0 +1,47 @@
+import { Card } from "@/components/Card";
+import { ThemeText } from "@/components/ThemeText";
+import { getPokemonArtWork } from "@/functions/pokemon";
+import { useThemeColors } from "@/hooks/useThemeColors";
+import { Link } from "expo-router";
+import { Image, Pressable, StyleSheet, View, type ViewStyle } from "react-native";
+type Props = {
+    style?: ViewStyle;
+    id: number;
+    name: string;
+};
+export function PokemonCard({ style, id, name }: Props) {
+    const colors = useThemeColors();
+    return (
+        <Link href={{ pathname: "/pokemon/[id]", params: { id: id } }} asChild>
+            <Pressable android_ripple={{ color: `${colors.tint}80`, foreground: true }} style={style}>
+                <Card style={[styles.card]}>
+                    <View style={[styles.shadow, { backgroundColor: colors.grayBackground }]}></View>
+
+                    <ThemeText style={styles.id} variant="caption" color="grayMedium">
+                        #{id.toString().padStart(3, "0")}
+                    </ThemeText>
+                    <Image source={{ uri: getPokemonArtWork(id) }} width={72} height={72} />
+                    <ThemeText style={{ textTransform: "capitalize" }}>{name}</ThemeText>
+                </Card>
+            </Pressable>
+        </Link>
+    );
+}
+const styles = StyleSheet.create({
+    card: {
+        position: "relative",
+        alignItems: "center",
+        padding: 4,
+    },
+    id: {
+        alignSelf: "flex-end",
+    },
+    shadow: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 44,
+        borderRadius: 7,
+    },
+});

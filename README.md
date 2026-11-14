@@ -24,6 +24,17 @@ L’objectif du projet est de créer une application mobile consommant l’API [
 
 <img src="https://zupimages.net/up/25/33/kv4d.png" alt="Page de présentation de Pokémon" width="40%"/>
 
+## Installation
+
+```bash
+git clone https://github.com/RandomElo/PokeAPI.git
+cd PokeAPI
+npm install
+npx expo start
+```
+
+Scanner le QR code avec l'application Expo Go sur un téléphone, ou lancer `npm run android` avec un émulateur.
+
 ## Structure du projet
 
 -   📂 .expo : configuration et cache internes générés par Expo
